@@ -12,7 +12,7 @@ body {
   max-width: 100vw;
   max-height: 100vh;
   padding: 1;
-  background-image: url(./img/bizhi.jpg);
+  background-image: url(bizhi.bcc84322.jpg);
 }
 ul,
 lu {
@@ -39,7 +39,6 @@ body {
 }
 .globalHeader {
   margin: 20px;
-  position: relative;
 }
 
 @media (min-width: 500px) {
@@ -75,7 +74,7 @@ body {
   padding: 0 28px;
   border: none;
   border-radius: 4px;
-  background-color: #4990ee;
+  background-color: #0282b9;
   color: white;
   font-size: 16px;
 }
@@ -165,46 +164,5 @@ body {
   width: 64px;
 }
 
-/* 跨域请求百度搜索 */
 
-.search-wrap {
-  text-align: center;
-}
-.list-wrap {
-  background: white;
-  width: 400px;
-  position: absolute;
-  left: 50%;
-  z-index: 20;
-  opacity: 0.9;
-  line-height: 32px;
-  padding: 0 8px;
-  transform: translateX(-50%);
-}
-.list-wrap {
-color:#626675;
-border-radius: 2px 2px 20px 20px;
-}
-
-.list-wrap li:hover{
-  color:#315efb;
-}
-@media screen and (max-width: 500px) {
-  .list-wrap{
-    width: 375px;
-  }
-  .siteList .site > .close {
-    display: block;
-  }
-}
-
-.wd-list li {
-  text-align: left;
-  border: 1px solid #eff;
-  padding: 0 10px;
-}
-.wd-list li:hover{
-}
-.wd-list:hover{
-  display: block!important;
-}
+/*# sourceMappingURL=style.05644f86.css.map */

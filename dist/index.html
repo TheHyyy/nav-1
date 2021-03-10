@@ -3,16 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="style.215587cf.css">
+    <link rel="stylesheet" href="/style.e308ff8e.css">
     <title>rain导航 -前端导航网站</title>
-  </head>
+  <script src="/style.e308ff8e.js"></script></head>
   <body>
     <header class="globalHeader">
       <form class="searchForm" method="GET" action="https://www.baidu.com/s">
-        <input name="wd" type="text">
+        <input autocomplete="off" class="J_searchInput" name="wd" type="text">
         <button type="submit">搜索</button>
       </form>
-    </header>
+       <!-- jsonp跨域请求 -->
+    <div class="list-wrap">
+      <ul class="twd-lis J_wdList">
+      </ul>
+    </div>
+    
+  </header>
+    
 
     <main class="globalMain">
       <ul class="siteList">
@@ -29,7 +36,16 @@
       </ul>
     </main>
     <script src="//at.alicdn.com/t/font_2333693_i8dowytrg5.js"></script>
+    <script type="text/html" id="J_listTpl">
+    <li class="wd-item">
+      <a class="wd-lk"
+      href="https://www.baidu.com/s?wd={{wdLink}}"
+      target="_blank">{{wd}}</a>
+    </li>
+  </script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="main.ea8a7c01.js"></script>
+    <script src="/main.fb6bbcaf.js"></script>
+    <script src="/utils.8598244e.js"></script>
+    <script src="/js.00a46daa.js"></script>
   </body>
 </html>

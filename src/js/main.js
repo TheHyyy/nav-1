@@ -1,12 +1,18 @@
 const $siteList = $('.siteList')
 const $lastLi = $siteList.find('li.last')
 const x = localStorage.getItem('x')
+let input = document.querySelector('input')
 const xObject = JSON.parse(x)
+const b = true
 const hashMap = xObject || [
   { logo: 'A', url: 'https://www.acfun.cn' },
   {
     logo: 'B',
     url: 'https://www.bilibili.com',
+  },
+  {
+    logo: 'J',
+    url: 'https://juejin.cn',
   },
 ]
 const simplifyUrl = (url) => {
@@ -61,12 +67,13 @@ window.onbeforeunload = () => {
   const string = JSON.stringify(hashMap)
   localStorage.setItem('x', string)
 }
-
 $(document).on('keypress', (e) => {
-  const { key } = e
-  for (let i = 0; i < hashMap.length; i++) {
-    if (hashMap[i].logo.toLowerCase() === key || hashMap[i].logo === key) {
-      window.open(hashMap[i].url)
+  if (e.target !== input) {
+    const { key } = e
+    for (let i = 0; i < hashMap.length; i++) {
+      if (hashMap[i].logo.toLowerCase() === key || hashMap[i].logo === key) {
+        window.open(hashMap[i].url)
+      }
     }
   }
 })

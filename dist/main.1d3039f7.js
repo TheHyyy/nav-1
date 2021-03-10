@@ -121,7 +121,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var $siteList = $('.siteList');
 var $lastLi = $siteList.find('li.last');
 var x = localStorage.getItem('x');
+var input = document.querySelector('input');
 var xObject = JSON.parse(x);
+var b = true;
 var hashMap = xObject || [{
   logo: 'A',
   url: 'https://www.acfun.cn'
@@ -173,13 +175,15 @@ window.onbeforeunload = function () {
 };
 
 $(document).on('keypress', function (e) {
-  var key = e.key;
+  if (e.target !== input) {
+    var key = e.key;
 
-  for (var i = 0; i < hashMap.length; i++) {
-    if (hashMap[i].logo.toLowerCase() === key || hashMap[i].logo === key) {
-      window.open(hashMap[i].url);
+    for (var i = 0; i < hashMap.length; i++) {
+      if (hashMap[i].logo.toLowerCase() === key || hashMap[i].logo === key) {
+        window.open(hashMap[i].url);
+      }
     }
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.ea8a7c01.js.map
+//# sourceMappingURL=main.1d3039f7.js.map
