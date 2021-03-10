@@ -117,73 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"epB2":[function(require,module,exports) {
-var $siteList = $('.siteList');
-var $lastLi = $siteList.find('li.last');
-var x = localStorage.getItem('x');
-var input = document.querySelector('input');
-var xObject = JSON.parse(x);
-var b = true;
-var hashMap = xObject || [{
-  logo: 'A',
-  url: 'https://www.acfun.cn'
-}, {
-  logo: 'B',
-  url: 'https://www.bilibili.com'
-}];
+})({"QvaY":[function(require,module,exports) {
+;
 
-var simplifyUrl = function simplifyUrl(url) {
-  return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
-};
+(function () {
+  var searchInput = document.getElementsByClassName('J_searchInput')[0],
+      wdList = document.getElementsByClassName('J_wdList')[0],
+      listTpl = document.getElementById('J_listTpl').innerHTML; // 这里通过触发和失去焦点 控制css,再通过css控制如果鼠标在ul中,则还将style设置为block
 
-var render = function render() {
-  $siteList.find('li:not(.last)').remove();
-  hashMap.forEach(function (node, index) {
-    var $li = $("<li>\n          \n        <div class=\"site\">\n          <div class=\"logo\">".concat(node.logo, "</div>\n            <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n              <div class=\"close\">\n                <svg class=\"icon\" aria-hidden=\"true\">\n                  <use xlink:href=\"#icon-close\"></use>\n                </svg>\n            </div>\n         </div>\n        \n  \n    </li>")).insertBefore($lastLi);
-    $li.on('click', function (e) {
-      window.open(node.url);
-    });
-    $li.on('click', '.close', function (e) {
-      console.log(e);
-      e.stopPropagation();
-      console.log(hashMap);
-      hashMap.splice(index, 1);
-      render();
-    });
+  searchInput.addEventListener('blur', function () {
+    wdList.style.display = 'none';
   });
-};
+  searchInput.addEventListener('focus', function () {
+    wdList.style.display = 'block';
+  });
 
-render();
-$('.addButton').on('click', function () {
-  console.log(1);
-  var url = prompt('请问你要添加的网站是？');
-
-  if (url.indexOf('http') !== 0) {
-    url = 'https://' + url;
+  function init() {
+    bindEvent();
   }
 
-  hashMap.push({
-    logo: simplifyUrl(url)[0].toUpperCase(),
-    url: url
-  });
-  render();
-}); // 页面关闭时
+  function bindEvent() {
+    searchInput.addEventListener('input', typeInput, false);
+  }
 
-window.onbeforeunload = function () {
-  var string = JSON.stringify(hashMap);
-  localStorage.setItem('x', string);
-};
+  function typeInput() {
+    var val = _trimSpace(this.value);
 
-$(document).on('keypress', function (e) {
-  if (e.target !== input) {
-    var key = e.key;
-
-    for (var i = 0; i < hashMap.length; i++) {
-      if (hashMap[i].logo.toLowerCase() === key || hashMap[i].logo === key) {
-        window.open(hashMap[i].url);
-      }
+    if (val.length > 0) {
+      getDates(val, 'setDatas');
     }
   }
-});
-},{}]},{},["epB2"], null)
-//# sourceMappingURL=main.1d3039f7.js.map
+
+  function getDates(val, cb) {
+    var oScript = document.createElement('script');
+    oScript.src = "https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1422,33222,31253,32974,33284,32938,32846,26350,33199,33239,33266&wd=" + val + "&req=2&csor=4&pwd=123&cb=" + cb;
+    document.body.appendChild(oScript);
+    document.body.removeChild(oScript);
+  }
+
+  function renderList(data) {
+    var data = data.g,
+        len = '',
+        list = '';
+
+    try {
+      len = data.length;
+    } catch (e) {
+      len = 0;
+    }
+
+    if (len > 0) {
+      data.forEach(function (item) {
+        list += listTpl.replace(/{{(.*?)}}/gim, function (node, key) {
+          return {
+            wd: item.q,
+            wdLink: item.q
+          }[key];
+        });
+      });
+      wdList.innerHTML = list;
+    } else {
+      wdList.innerHTML = '';
+    }
+  }
+
+  window.setDatas = function (data) {
+    renderList(data);
+  };
+
+  function _trimSpace(str) {
+    return str.replace(/\s+/, '');
+  }
+
+  init();
+})();
+},{}]},{},["QvaY"], null)
+//# sourceMappingURL=js.7263298f.js.map
